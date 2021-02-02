@@ -70,5 +70,5 @@ pretrained_vqapc = GumbelAPCModel(input_size=80,
                      vq_hidden_size=-1,
                      apply_VQ='0 0 1').cuda()
 
-pretrained_weights_path = './log/jan-30_run1.dir/jan-30_run1__epoch_9.model'
+pretrained_weights_path = './log/jan-30_run1.dir'
 pretrained_vqapc.load_state_dict(torch.load(pretrained_weights_path))
