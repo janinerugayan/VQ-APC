@@ -7,6 +7,11 @@ import torch.nn.functional as F
 
 from vqapc_model import GumbelAPCModel
 
+import argparse
+parser = argparse.ArgumentParser()
+parser.add_argument('--pretrained_weights',   type=str)
+args = parser.parse_args()
+
 
 wav_path = './wavs/combined_sounds_shuffled.wav'
 
@@ -70,5 +75,5 @@ pretrained_vqapc = GumbelAPCModel(input_size=80,
                      vq_hidden_size=-1,
                      apply_VQ='0 0 1').cuda()
 
-pretrained_weights_path = './log/jan-30_run1.dir'
+pretrained_weights_path = args.pretrained_weights
 pretrained_vqapc.load_state_dict(torch.load(pretrained_weights_path))
