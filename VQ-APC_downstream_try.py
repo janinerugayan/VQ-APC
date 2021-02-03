@@ -9,9 +9,9 @@ from vqapc_model import GumbelAPCModel
 
 import argparse
 parser = argparse.ArgumentParser()
-parser.add_argument('--pretrained_weights',   type=str)
-parser.add_argument('--source',     type=str)
 parser.add_argument('--exp_name',   type=str)
+parser.add_argument('--sound_file',     type=str)
+parser.add_argument('--pretrained_weights',   type=str)
 args = parser.parse_args()
 
 
@@ -19,7 +19,7 @@ args = parser.parse_args()
     mel spectrogram - 80-dimensional
 '''
 
-wav_path = args.source
+wav_path = args.sound_file
 
 x, sr = librosa.load(wav_path, sr=44100)
 mel_per_wav = librosa.feature.melspectrogram(x, sr=sr, n_mels=80).T
