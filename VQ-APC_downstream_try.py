@@ -78,6 +78,8 @@ pretrained_vqapc = GumbelAPCModel(input_size=80,
                      vq_hidden_size=-1,
                      apply_VQ='0 0 1').cuda()
 
+model = nn.DataParallel(model)
+
 pretrained_vq_path = args.pretrained_VQ
 pretrained_vqapc.vq_layers.load_state_dict(torch.load(pretrained_vq_path))
 
