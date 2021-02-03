@@ -10,10 +10,11 @@ from vqapc_model import GumbelAPCModel
 import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument('--pretrained_weights',   type=str)
+parser.add_argument('--source',     type=str)
 args = parser.parse_args()
 
 
-wav_path = './wavs/combined_sounds_shuffled.wav'
+wav_path = args.source
 
 
 '''
@@ -22,7 +23,7 @@ wav_path = './wavs/combined_sounds_shuffled.wav'
 
 x, sr = librosa.load(wav_path, sr=44100)
 mel_per_wav = librosa.feature.melspectrogram(x, sr=sr, n_mels=80).T
-print("for wav file " + wav_path + ", mfcc shape:")
+print("for wav file " + wav_path + ", mel spectrogram shape:")
 print(mel_per_wav.shape)
 
 n = len(mel_per_wav)
@@ -56,7 +57,7 @@ with open('mel_spectrogram.txt', 'r') as f:
     log_mel = F.pad(log_mel, (0, 0, 0, max_seq_len - log_mel.size(0))) # pad or truncate
     torch.save(log_mel, os.path.join(save_dir, utt_id + '.pt'))
 
-with open(os.path.join(save_dir, 'lengths.pkl'), 'wb') as f:
+with open(os.path.join(save_dir, 'lengths.pkl'), 'wb') as f:  # sequence lengths to be used for forward function?
     pickle.dump(id2len, f, protocol=4)
 
 
