@@ -12,6 +12,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--exp_name',   type=str)
 parser.add_argument('--sound_file',     type=str)
 parser.add_argument('--pretrained_weights',   type=str)
+parser.add_argument('--pretrained_VQ',      type=str)
 args = parser.parse_args()
 
 
@@ -76,6 +77,9 @@ pretrained_vqapc = GumbelAPCModel(input_size=80,
                      gumbel_temperature=0.5,
                      vq_hidden_size=-1,
                      apply_VQ='0 0 1').cuda()
+
+pretrained_vq_path = args.pretrained_VQ
+pretrained_vqapc.vq_layers.load_state_dict(torch.load(pretrained_vq_path))
 
 pretrained_weights_path = args.pretrained_weights
 pretrained_vqapc.load_state_dict(torch.load(pretrained_weights_path))
