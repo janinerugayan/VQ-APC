@@ -11,18 +11,19 @@ import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument('--pretrained_weights',   type=str)
 parser.add_argument('--source',     type=str)
+parser.add_argument('--exp_name',   type=str)
 args = parser.parse_args()
-
-
-wav_path = args.source
 
 
 '''
     mel spectrogram - 80-dimensional
 '''
 
+wav_path = args.source
+
 x, sr = librosa.load(wav_path, sr=44100)
 mel_per_wav = librosa.feature.melspectrogram(x, sr=sr, n_mels=80).T
+
 print("for wav file " + wav_path + ", mel spectrogram shape:")
 print(mel_per_wav.shape)
 
@@ -41,7 +42,7 @@ f.close()
 
 max_seq_len = 1600
 save_dir = './preprocessed'
-utt_id = 'combined_sounds_shuffled'
+utt_id = args.exp_name
 
 id2len = {}
 with open('mel_spectrogram.txt', 'r') as f:
