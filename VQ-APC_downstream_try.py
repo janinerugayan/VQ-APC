@@ -84,5 +84,5 @@ pretrained_vqapc = nn.DataParallel(pretrained_vqapc)
 pretrained_vqlayer_path = args.pretrained_VQ
 pretrained_vqapc.module.vq_layers.load_state_dict(torch.load(pretrained_vqlayer_path))
 
-pretrained_weights_path = args.pretrained_weights
-pretrained_vqapc.module.load_state_dict(torch.load(pretrained_weights_path))
+# pretrained_weights_path = args.pretrained_weights
+# pretrained_vqapc.module.load_state_dict(torch.load(pretrained_weights_path))
