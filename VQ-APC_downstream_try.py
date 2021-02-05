@@ -89,7 +89,7 @@ pretrained_vqapc.module.load_state_dict(torch.load(pretrained_weights_path))
     using forward method of model class with preprocessed data
 '''
 
-frames_BxLxM = './preprocessed/combined_sounds_shuffled.pt'
+frames_BxLxM = torch.load('./preprocessed/combined_sounds_shuffled.pt')
 
 with open('./preprocessed/lengths.pkl', 'rb') as f:
     seq_lengths_B = pickle.load(f)
