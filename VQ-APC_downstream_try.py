@@ -1,6 +1,8 @@
 import librosa, pickle
 import os
 import argparse
+from os import listdir
+from os.path import join
 
 import torch
 from torch import nn, optim
@@ -91,9 +93,13 @@ pretrained_vqapc.module.load_state_dict(torch.load(pretrained_weights_path))
 
 frames_BxLxM = torch.load('./preprocessed/combined_sounds_shuffled.pt')
 
+path = './preprocessed/'
+id = [f for f in listdir(self.path) if f.endswith('.pt')]
 with open('./preprocessed/lengths.pkl', 'rb') as f:
-    seq_lengths_B = pickle.load(f)
+    lengths = pickle.load(f)
 
+frames_BxLxM = torch.load(join(path, id))
+seq_lengths_B = lengths[id]
 testing = True
 
 pretrained_vqapc.module.forward(frames_BxLxM, seq_lengths_B, testing)
