@@ -94,7 +94,7 @@ pretrained_vqapc.module.load_state_dict(torch.load(pretrained_weights_path))
 frames_BxLxM = torch.load('./preprocessed/combined_sounds_shuffled.pt')
 
 path = './preprocessed/'
-id = [f for f in listdir(self.path) if f.endswith('.pt')]
+id = [f for f in listdir(path) if f.endswith('.pt')]
 with open('./preprocessed/lengths.pkl', 'rb') as f:
     lengths = pickle.load(f)
 
