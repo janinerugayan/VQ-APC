@@ -92,7 +92,7 @@ pretrained_vqapc.module.load_state_dict(torch.load(pretrained_weights_path))
 frames_BxLxM = './preprocessed/combined_sounds_shuffled.pt'
 
 with open('./preprocessed/lengths.pkl', 'rb') as f:
-    seg_lengths_B = pickle.load(f)
+    seq_lengths_B = pickle.load(f)
 
 testing = True
 
