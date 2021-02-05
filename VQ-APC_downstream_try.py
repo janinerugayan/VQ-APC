@@ -98,6 +98,6 @@ frames_BxLxM = torch.load('./preprocessed/combined_sounds_shuffled.pt')
 seq_lengths_B = lengths['combined_sounds_shuffled.pt']
 testing = True
 
-print(seq_lengths_B)
+print(seq_lengths_B.type())
 
-predicted_BxLxM, hiddens_NxBxLxH, logits_NxBxLxC = pretrained_vqapc.module.forward(frames_BxLxM, seq_lengths_B, testing)
+# predicted_BxLxM, hiddens_NxBxLxH, logits_NxBxLxC = pretrained_vqapc.module.forward(frames_BxLxM, seq_lengths_B, testing)
