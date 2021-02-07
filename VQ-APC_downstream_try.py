@@ -46,7 +46,7 @@ f.close()
     prepare data - following APC pipeline
 '''
 
-max_seq_len = 1600
+max_seq_len = 32000
 save_dir = './preprocessed'
 utt_id = args.exp_name
 
