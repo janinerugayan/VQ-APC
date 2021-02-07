@@ -57,8 +57,6 @@ with open('mel_spectrogram.txt', 'r') as f:
         data = line.strip().split()
         log_mel.append([float(i) for i in data])
 
-    print(len(log_mel))
-
     id2len[utt_id + '.pt'] = min(len(log_mel), max_seq_len)
     log_mel = torch.FloatTensor(log_mel)  # convert the 2D list to a pytorch tensor
     log_mel = F.pad(log_mel, (0, 0, 0, max_seq_len - log_mel.size(0))) # pad or truncate
@@ -97,7 +95,7 @@ with open('./preprocessed/lengths.pkl', 'rb') as f:
     lengths = pickle.load(f)
 
 frames_BxLxM = torch.load('./preprocessed/combined_sounds_shuffled.pt')
-seq_lengths_B = lengths['combined_sounds_shuffled.pt']
+seq_lengths_B = lengths.values()  #['combined_sounds_shuffled.pt']
 testing = True
 
 predicted_BxLxM, hiddens_NxBxLxH, logits_NxBxLxC = pretrained_vqapc.module.forward(frames_BxLxM, seq_lengths_B, testing)
