@@ -4,6 +4,8 @@ import argparse
 from os import listdir
 from os.path import join
 
+from IPython import embed
+
 import torch
 from torch import nn, optim
 import torch.nn.functional as F
@@ -98,6 +100,7 @@ frames_BxLxM = torch.load('./preprocessed/combined_sounds_shuffled.pt')
 seq_lengths_B = torch.as_tensor(lengths['combined_sounds_shuffled.pt'], dtype=torch.int64)
 seq_lengths_B = seq_lengths_B.cpu()
 print(seq_lengths_B.type())
+embed()
 testing = True
 
 predicted_BxLxM, hiddens_NxBxLxH, logits_NxBxLxC = pretrained_vqapc.module.forward(frames_BxLxM, seq_lengths_B, testing)
