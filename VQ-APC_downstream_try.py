@@ -97,9 +97,7 @@ with open('./preprocessed/lengths.pkl', 'rb') as f:
     lengths = pickle.load(f)
 
 frames_BxLxM = torch.load('./preprocessed/combined_sounds_shuffled.pt')
-seq_lengths_B = torch.as_tensor(lengths['combined_sounds_shuffled.pt'], dtype=torch.int64)
-seq_lengths_B = seq_lengths_B.cpu()
-print(seq_lengths_B.type())
+seq_lengths_B = torch.as_tensor(lengths['combined_sounds_shuffled.pt'], dtype=torch.int64, device=torch.device('cpu'))
 embed()
 testing = True
 

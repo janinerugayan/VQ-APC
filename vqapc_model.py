@@ -183,7 +183,7 @@ class GumbelAPCModel(nn.Module):
 
     # RNN
     # Prepare initial packed RNN input.
-    packed_rnn_inputs = pack_padded_sequence(frames_BxLxM, seq_lengths_B.cpu(),
+    packed_rnn_inputs = pack_padded_sequence(frames_BxLxM, seq_lengths_B,
                                              batch_first=True,
                                              enforce_sorted=False)
     for i, (rnn_layer, vq_layer) in enumerate(
@@ -217,7 +217,7 @@ class GumbelAPCModel(nn.Module):
 
       # Prepare packed input for the next layer.
       packed_rnn_inputs = pack_padded_sequence(rnn_outputs_BxLxH,
-                                               seq_lengths_B.cpu(), batch_first=True,
+                                               seq_lengths_B, batch_first=True,
                                                enforce_sorted=False)
     hiddens_NxBxLxH = torch.stack(hiddens_NxBxLxH)
 
