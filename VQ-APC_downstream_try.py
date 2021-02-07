@@ -57,7 +57,7 @@ with open('mel_spectrogram.txt', 'r') as f:
         data = line.strip().split()
         log_mel.append([float(i) for i in data])
 
-    print(log_mel)
+    print(len(log_mel))
 
     id2len[utt_id + '.pt'] = min(len(log_mel), max_seq_len)
     log_mel = torch.FloatTensor(log_mel)  # convert the 2D list to a pytorch tensor
