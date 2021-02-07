@@ -97,6 +97,7 @@ with open('./preprocessed/lengths.pkl', 'rb') as f:
 frames_BxLxM = torch.load('./preprocessed/combined_sounds_shuffled.pt')
 seq_lengths_B = torch.as_tensor(lengths['combined_sounds_shuffled.pt'], dtype=torch.int64)
 seq_lengths_B = seq_lengths_B.cpu()
+print(seq_lengths_B.type())
 testing = True
 
 predicted_BxLxM, hiddens_NxBxLxH, logits_NxBxLxC = pretrained_vqapc.module.forward(frames_BxLxM, seq_lengths_B, testing)
