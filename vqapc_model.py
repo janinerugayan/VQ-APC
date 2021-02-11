@@ -157,10 +157,10 @@ class GumbelAPCModel(nn.Module):
     self.postnet = nn.Linear(code_dim, input_size)
 
   # for saving VQ Layer parameters
-  def saveVQparam(self, model_dir, exp_name, epoch_i):
-    torch.save(self.vq_layers.state_dict(),
-      open(os.path.join(model_dir, exp_name + '-VQlayers__epoch_%d' %
-      (epoch_i + 1) + '.model'), 'wb'))
+  # def saveVQparam(self, model_dir, exp_name, epoch_i):
+  #   torch.save(self.vq_layers.state_dict(),
+  #     open(os.path.join(model_dir, exp_name + '-VQlayers__epoch_%d' %
+  #     (epoch_i + 1) + '.model'), 'wb'))
 
   def forward(self, frames_BxLxM, seq_lengths_B, testing):
     """

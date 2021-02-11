@@ -223,7 +223,7 @@ def main():
       open(os.path.join(model_dir, config.exp_name + '__epoch_%d' %
       (epoch_i + 1) + '.model'), 'wb'))
 
-    model.module.saveVQparam(model_dir, config.exp_name, epoch_i)
+    # model.module.saveVQparam(model_dir, config.exp_name, epoch_i)
 
 
 if __name__ == '__main__':
